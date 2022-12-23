@@ -1,4 +1,4 @@
-# template
+# adaptive-read-ex
 
 ## Project setup
 ```
