@@ -10,6 +10,8 @@ import {
 export default createStore({
   state: {
     user: null,
+    id: "",
+    readingSpeed: 1500,
   },
   mutations: {
     SET_USER(state, user) {
@@ -18,6 +20,12 @@ export default createStore({
 
     CLEAR_USER(state) {
       state.user = null;
+    },
+    addUserID(state, id) {
+      state.id = id;
+    },
+    addreadingSpeed(state, readingSpeed) {
+      state.readingSpeed = readingSpeed;
     },
   },
   actions: {
@@ -97,6 +105,14 @@ export default createStore({
           }
         }
       });
+    },
+  },
+  getters: {
+    getUserID(state) {
+      return state.id;
+    },
+    getReadingSpeed(state) {
+      return state.readingSpeed;
     },
   },
 });

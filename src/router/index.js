@@ -1,23 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
+import Reading from "../views/Reading.vue";
 import { auth } from "../firebase";
 
 const routes = [
   {
-    path: "/",
+    path: "/home",
     name: "Home",
     component: Home,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {
-    path: "/about",
-    name: "About",
-    component: () => import("../views/About.vue"),
+    path: "/reading",
+    name: "Reading",
+    component: Reading,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {
