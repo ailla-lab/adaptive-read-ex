@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Reading from "../views/Reading.vue";
+import ReadingSpeed from "../views/ReadingSpeed.vue";
 import { auth } from "../firebase";
 
 const routes = [
@@ -12,6 +13,11 @@ const routes = [
     meta: {
       requiresAuth: false,
     },
+  },
+  {
+    path: "/reading-speed-test",
+    name: "ReadingSpeed",
+    component: ReadingSpeed,
   },
   {
     path: "/reading",

@@ -58,8 +58,8 @@
 </template>
 
 <script>
-import userCollection from "@/firebaseInit";
-import { setDoc, doc } from "@/firebaseInit";
+// import userCollection from "@/firebaseInit";
+// import { setDoc, doc } from "@/firebaseInit";
 
 export default {
   name: "ReadingSpeedTest",
@@ -105,12 +105,12 @@ export default {
       this.$router.push("/Experiment");
     },
 
-    async addReadingSpeedResult() {
-      let docRef = doc(userCollection, this.$store.state.id);
-      let userDoc = this.getDoc(docRef);
-      console.log(userDoc);
-      await setDoc(userDoc, { readingSpeed: this.readingDuration });
-    },
+    // async addReadingSpeedResult() {
+    //   let docRef = doc(userCollection, this.$store.state.id);
+    //   let userDoc = this.getDoc(docRef);
+    //   console.log(userDoc);
+    //   await setDoc(userDoc, { readingSpeed: this.readingDuration });
+    // },
   },
 };
 </script>

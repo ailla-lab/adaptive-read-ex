@@ -5,7 +5,11 @@
         <div class="card border border-primary">
           <div class="card-body">
             <h5 class="card-title">Reading speed Test</h5>
-            <a href="#" class="btn btn-success">Start</a>
+            <router-link to="/ReadingSpeed" custom v-slot="{ navigate }">
+              <button @click="navigate" role="link" class="btn btn-success">
+                Start
+              </button>
+            </router-link>
           </div>
         </div>
       </div>
