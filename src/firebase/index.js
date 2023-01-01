@@ -3,13 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA2FsWtERmBdkkdLbez7OC3QDoNsF8a1fY",
-  authDomain: "adpative-read.firebaseapp.com",
-  projectId: "adpative-read",
-  storageBucket: "adpative-read.appspot.com",
-  messagingSenderId: "31823913660",
-  appId: "1:31823913660:web:e20168e20b2c93b02466b9",
-  measurementId: "G-KLSTQVT1TP",
+  apiKey: "AIzaSyBY0XjtVn1BZNRImb35q_pB-O9cExu6mr8",
+  authDomain: "adaptive-read.firebaseapp.com",
+  projectId: "adaptive-read",
+  storageBucket: "adaptive-read.appspot.com",
+  messagingSenderId: "378676341001",
+  appId: "1:378676341001:web:dabcbf474028464d594bd8",
 };
 
 const app = initializeApp(firebaseConfig);

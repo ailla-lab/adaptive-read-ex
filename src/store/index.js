@@ -10,12 +10,27 @@ import {
 export default createStore({
   state: {
     user: null,
-    id: "",
+    id: null,
+    group: null,
     readingSpeed: 1500,
+    artcileOne: {
+      easey: [
+        "I am easy text, pargraph number 1 ",
+        "I am easy text, pargraph number 2 ",
+        "I am easy text, pargraph number 3 ",
+      ],
+      hard: [
+        "I am hard text, pargraph number 1 ",
+        "I am hard text, pargraph number 2 ",
+        "I am hard text, pargraph number 3 ",
+      ],
+    },
   },
+
   mutations: {
     SET_USER(state, user) {
       state.user = user;
+      // state.group = group;
     },
 
     CLEAR_USER(state) {
@@ -55,7 +70,9 @@ export default createStore({
     },
 
     async register({ commit }, details) {
-      const { email, password } = details;
+      const { email, password, group } = details;
+      this.state.group = group;
+      console.log("group is", this.state.group);
 
       try {
         await createUserWithEmailAndPassword(auth, email, password);

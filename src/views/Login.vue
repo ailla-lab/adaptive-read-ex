@@ -13,6 +13,8 @@
           placeholder="Password"
           v-model="register_form.password"
         />
+
+        <input type="text" placeholder="Group" v-model="register_form.group" />
         <input type="submit" value="Register" />
       </form>
 
@@ -50,6 +52,7 @@ export default {
 
     const register = () => {
       store.dispatch("register", register_form.value);
+      console.log(register_form.value);
     };
 
     return {
