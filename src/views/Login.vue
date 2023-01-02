@@ -13,8 +13,15 @@
           placeholder="Password"
           v-model="register_form.password"
         />
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Group select</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+          </select>
+        </div>
 
-        <input type="text" placeholder="Group" v-model="register_form.group" />
         <input type="submit" value="Register" />
       </form>
 
@@ -92,7 +99,8 @@ h2 {
   margin-bottom: 2rem;
 }
 
-input {
+input,
+label {
   appearance: none;
   border: none;
   outline: none;
@@ -107,6 +115,20 @@ input {
   padding: 0.5rem 0rem;
 }
 
+.form-group {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem 0rem;
+}
 input:not([type="submit"]) {
   opacity: 0.8;
   transition: 0.4s;

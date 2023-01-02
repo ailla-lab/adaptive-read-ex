@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!-- <div v-for="(article, index) in filterArticles"> -->
     <div class="row mt-4">
       <div class="col-sm-4">
         <div class="card border colorBg">
@@ -14,7 +15,7 @@
       <div class="col-sm-4">
         <div class="card border">
           <div class="card-body">
-            <h5 class="card-title">Title Two</h5>
+            <h5 class="card-title">{{ article.title }} {{}}</h5>
             <a href="#" class="btn">Read</a>
           </div>
         </div>
@@ -56,6 +57,7 @@
       </div>
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 <script>
