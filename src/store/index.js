@@ -13,24 +13,56 @@ export default createStore({
     id: null,
     group: null,
     readingSpeed: 1500,
-    artcileOne: {
-      easey: [
-        "I am easy text, pargraph number 1 ",
-        "I am easy text, pargraph number 2 ",
-        "I am easy text, pargraph number 3 ",
-      ],
-      hard: [
-        "I am hard text, pargraph number 1 ",
-        "I am hard text, pargraph number 2 ",
-        "I am hard text, pargraph number 3 ",
-      ],
-    },
-  },
+    artciles: [
+      {
+        id: 1,
+        title: "Text 1",
+        hard: false,
+        paragraphs: [
+          "I am easy text, pargraph number 1 ",
+          "I am easy text, pargraph number 2 ",
+          "I am easy text, pargraph number 3 ",
+        ],
+      },
 
+      {
+        id: 1,
+        title: "Text 2",
+        hard: true,
+        paragraphs: [
+          "I am hard text, pargraph number 1 ",
+          "I am hard text, pargraph number 2 ",
+          "I am hard text, pargraph number 3 ",
+        ],
+      },
+
+      {
+        id: 2,
+        title: "Text 2",
+        hard: false,
+        paragraphs: [
+          "I am easy text, pargraph number 1 ",
+          "I am easy text, pargraph number 2 ",
+          "I am easy text, pargraph number 3 ",
+        ],
+      },
+
+      {
+        id: 2,
+        title: "Text 3",
+        hard: true,
+        paragraphs: [
+          "I am hard text, pargraph number 1 ",
+          "I am hard text, pargraph number 2 ",
+          "I am hard text, pargraph number 3 ",
+        ],
+      },
+    ],
+  },
   mutations: {
-    SET_USER(state, user) {
+    SET_USER(state, user, group) {
       state.user = user;
-      // state.group = group;
+      state.group = group;
     },
 
     CLEAR_USER(state) {
@@ -130,6 +162,16 @@ export default createStore({
     },
     getReadingSpeed(state) {
       return state.readingSpeed;
+    },
+
+    filterArticles(state) {
+      if (state.group == "A") {
+        return state.artcileOne["easey"];
+      } else if (state.group == "B") {
+        return state.artcileOne["hard"];
+      } else {
+        console.log("nothing worked out");
+      }
     },
   },
 });

@@ -78,11 +78,11 @@ form {
 
 form.register {
   color: #fff;
-  background-color: rgb(245, 66, 101);
+  background-color: rgb(115, 44, 58);
   background-image: linear-gradient(
     to bottom right,
-    rgb(245, 66, 101) 0%,
-    rgb(189, 28, 60) 100%
+    rgb(77, 34, 170) 0%,
+    rgb(208, 26, 63) 100%
   );
 }
 
@@ -131,7 +131,7 @@ form.login input:not([type="submit"]) {
 }
 
 form.login input[type="submit"] {
-  background-color: rgb(245, 66, 101);
+  background-color: rgb(23, 12, 108);
   color: #fff;
   font-weight: 700;
   padding: 1rem 2rem;
