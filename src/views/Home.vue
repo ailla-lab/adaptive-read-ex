@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <!-- <div v-for="(article, index) in filterArticles"> -->
     <div class="row mt-4">
       <div class="col-sm-4">
         <div class="card border colorBg">
@@ -15,8 +14,8 @@
       <div class="col-sm-4">
         <div class="card border">
           <div class="card-body">
-            <h5 class="card-title">{{ article.title }} {{}}</h5>
-            <a href="#" class="btn">Read</a>
+            <h5 class="card-title">Article One</h5>
+            <router-link class="btn" to="/article1">Read</router-link>
           </div>
         </div>
       </div>
@@ -61,14 +60,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "Home",
-
-  computed: {
-    ...mapGetters(["filterArticles"]),
-  },
 };
 </script>
 

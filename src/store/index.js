@@ -11,7 +11,7 @@ export default createStore({
   state: {
     user: null,
     id: null,
-    group: null,
+    group: "A",
     readingSpeed: 1500,
     artciles: [
       {
@@ -166,9 +166,9 @@ export default createStore({
 
     filterArticles(state) {
       if (state.group == "A") {
-        return state.artcileOne["easey"];
+        return state.artciles.filter((article) => article.hard == false);
       } else if (state.group == "B") {
-        return state.artcileOne["hard"];
+        return state.artciles.filter((article) => article.hard == true);
       } else {
         console.log("nothing worked out");
       }

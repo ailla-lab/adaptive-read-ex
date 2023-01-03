@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
-import Reading from "../views/Reading.vue";
+import ArticleOne from "../views/ArticleOne.vue";
 import ReadingSpeed from "../views/ReadingSpeed.vue";
 import { auth } from "../firebase";
 
@@ -20,9 +20,9 @@ const routes = [
     component: ReadingSpeed,
   },
   {
-    path: "/reading",
-    name: "Reading",
-    component: Reading,
+    path: "/article1",
+    name: "ArticleOne",
+    component: ArticleOne,
     meta: {
       requiresAuth: false,
     },
