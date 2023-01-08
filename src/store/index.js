@@ -13,51 +13,6 @@ export default createStore({
     id: null,
     group: "A",
     readingSpeed: 1500,
-    artciles: [
-      {
-        id: 1,
-        title: "Text 1",
-        hard: false,
-        paragraphs: [
-          "I am easy text, pargraph number 1 ",
-          "I am easy text, pargraph number 2 ",
-          "I am easy text, pargraph number 3 ",
-        ],
-      },
-
-      {
-        id: 1,
-        title: "Text 2",
-        hard: true,
-        paragraphs: [
-          "I am hard text, pargraph number 1 ",
-          "I am hard text, pargraph number 2 ",
-          "I am hard text, pargraph number 3 ",
-        ],
-      },
-
-      {
-        id: 2,
-        title: "Text 2",
-        hard: false,
-        paragraphs: [
-          "I am easy text, pargraph number 1 ",
-          "I am easy text, pargraph number 2 ",
-          "I am easy text, pargraph number 3 ",
-        ],
-      },
-
-      {
-        id: 2,
-        title: "Text 3",
-        hard: true,
-        paragraphs: [
-          "I am hard text, pargraph number 1 ",
-          "I am hard text, pargraph number 2 ",
-          "I am hard text, pargraph number 3 ",
-        ],
-      },
-    ],
   },
   mutations: {
     SET_USER(state, user, group) {
@@ -159,6 +114,9 @@ export default createStore({
   getters: {
     getUserID(state) {
       return state.id;
+    },
+    getUserGroup(state) {
+      return state.group;
     },
     getReadingSpeed(state) {
       return state.readingSpeed;

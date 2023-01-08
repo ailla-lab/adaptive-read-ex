@@ -22,8 +22,8 @@
       <div class="col-sm-4">
         <div class="card border">
           <div class="card-body">
-            <h5 class="card-title">Title Three</h5>
-            <a href="#" class="btn">Read</a>
+            <h5 class="card-title">Title Two</h5>
+            <router-link class="btn" to="/article2">Read</router-link>
           </div>
         </div>
       </div>
@@ -33,8 +33,8 @@
       <div class="col-sm-4">
         <div class="card border border-dark">
           <div class="card-body">
-            <h5 class="card-title">Title One</h5>
-            <a href="#" class="btn">Read</a>
+            <h5 class="card-title">Title Three</h5>
+            <router-link class="btn" to="/article3">Read</router-link>
           </div>
         </div>
       </div>
