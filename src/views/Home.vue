@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
+  <NavBar />
+  <div class="container tm-50">
     <div class="row mt-4">
       <div class="col-sm-4">
         <div class="card border colorBg">
           <div class="card-body">
             <h5 class="card-title">Reading speed Test</h5>
-            <router-link to="/ReadingSpeed" custom v-slot="{ navigate }">
-              <button @click="navigate" role="link" class="btn">Start</button>
-            </router-link>
+
+            <router-link class="btn" to="/reading-speed">Start</router-link>
           </div>
         </div>
       </div>
@@ -60,8 +60,13 @@
 </template>
 
 <script>
+import NavBar from "@/components/Navbar";
+
 export default {
   name: "Home",
+  components: {
+    NavBar,
+  },
 };
 </script>
 
@@ -70,14 +75,14 @@ export default {
   min-height: 140px;
 }
 .colorBg {
-  background-color: rgb(222, 236, 198);
+  background-color: #e7e9eb;
 }
 .btn {
   font-size: 16px;
-  color: black;
-  background-color: rgb(96, 239, 120);
+  color: white;
+  background-color: #04aa6d;
   margin-top: 30px;
-  border-radius: 11%;
+  border-radius: 8%;
   width: 85px;
 }
 
@@ -86,5 +91,8 @@ export default {
 }
 .card-title {
   font-weight: 900 !important;
+}
+.tm-50 {
+  margin-top: 100px;
 }
 </style>

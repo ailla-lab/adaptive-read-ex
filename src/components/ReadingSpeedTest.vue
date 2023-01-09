@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     next() {
-      this.$router.push("/MobileInterFaceView");
+      this.$router.push("/");
     },
     beginTest() {
       this.readingTimeStart = Date.now();
@@ -102,7 +102,7 @@ export default {
       this.$store.state.readingSpeed = this.readingDuration;
       this.addReadingSpeedResult();
       this.readingTimeStart = 0;
-      this.$router.push("/Experiment");
+      this.$router.push("/");
     },
 
     // async addReadingSpeedResult() {

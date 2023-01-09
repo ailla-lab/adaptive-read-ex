@@ -1,16 +1,19 @@
 <template>
   <div class="container mt-10">
+    <div>
+      Selected: {{ selected }} and current Group {{ userGroup }} and current
+      page {{ cuurentPage }} start time {{ startReadingTime }} and end time
+      {{ endReadingTime }}
+    </div>
     <div class="mobileContainer">
       <div class="row">
         <p>{{ currentPar }}</p>
       </div>
 
-      <div>
-        Selected: {{ selected }} and current Group {{ userGroup }} and current
-        page {{ cuurentPage }}
-      </div>
-      <div v-show="showQ" ref="box1" id="#box1" class="row">
-        <p id="item">{{ questions[cuurentPage].q }}</p>
+      <div v-show="showQ" class="row border topM">
+        <p id="item">
+          Q{{ questions[cuurentPage].id }}: {{ questions[cuurentPage].q }}
+        </p>
         <div class="col-6 offset-2">
           <div class="form-group form-check">
             <div id="left">
@@ -79,6 +82,14 @@
           >
             Next
           </button>
+          <button
+            type="button"
+            @click="finishTest"
+            class="btn btn-success m-2"
+            v-if="showFinishBtn"
+          >
+            Finish
+          </button>
         </div>
       </div>
     </div>
@@ -87,12 +98,15 @@
 
 <script>
 import { mapState } from "vuex";
+import { getDatabase, ref, set } from "firebase/database";
+
 export default {
   name: "ArticleThree",
   data() {
     return {
       readingSpeed: this.$store.state.readingSpeed,
       userGroup: "C",
+      showFinishBtn: false,
       paragraphs: [
         {
           id: 0,
@@ -143,7 +157,7 @@ export default {
           B: "Option B",
           C: "Option C",
           D: "Option D",
-          cuurentAnswer: "C",
+          correctAnswer: "C",
         },
         {
           id: 3,
@@ -152,14 +166,14 @@ export default {
           B: "Option B",
           C: "Option C",
           D: "Option D",
-          cuurentAnswer: "C",
+          correctAnswer: "C",
         },
       ],
       cuurentPage: 0,
       currentPar: "",
 
       startReadingTime: 0,
-      endReadignTime: 0,
+      endReadingTime: 0,
       showNextBtn: false,
       showStartBtn: true,
       showQ: false,
@@ -169,9 +183,14 @@ export default {
     ...mapState(["readingSpeed"]),
   },
   methods: {
+    writeUserData(userId, article_id) {
+      const db = getDatabase();
+      set(ref(db, "users/" + userId), {
+        article_id,
+      });
+    },
     start() {
       this.startReadingTime = Date.now();
-      console.log(this.readingSpeed);
       this.showStartBtn = false;
       this.showNextBtn = true;
       this.showQ = true;
@@ -184,15 +203,26 @@ export default {
         this.currentPar = par;
       }
     },
+    // sendResult() {
+
+    // },
+    finishTest() {
+      // this.sendResult()
+      this.$router.push("/");
+    },
+
+    // TODO reading time
+    // this.endReadingTime = Date.now() - this.startReadingTime;
+    // this.startReadingTime = Date.now();
     next() {
       if (this.cuurentPage < this.paragraphs.length) {
-        this.endReadignTime = Date.now() - this.startReadingTime;
-        this.startReadingTime = Date.now();
         if (this.userGroup === "A") {
           const par = this.paragraphs[this.cuurentPage].orginalText;
           this.currentPar = par;
           this.cuurentPage++;
         } else if (this.userGroup === "B") {
+          this.endReadingTime = Date.now() - this.startReadingTime;
+          this.startReadingTime = Date.now();
           const par = this.paragraphs[this.cuurentPage].easyText;
           this.currentPar = par;
           this.cuurentPage++;
@@ -208,7 +238,7 @@ export default {
           }
         }
       } else {
-        this.$router.push("/");
+        this.showFinishBtn = true;
       }
     },
   },
@@ -220,7 +250,7 @@ export default {
   margin-top: 10rem;
 }
 p {
-  font-size: 18px;
+  font-size: 25px;
   text-align: justify;
 }
 .mobileContainer {
@@ -234,7 +264,7 @@ p {
 }
 
 .form-check-label {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #left {
@@ -247,9 +277,15 @@ p {
 .form-group {
   margin-bottom: 40px;
 }
-
+.btn {
+  font-size: 26px;
+}
 #item {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
+}
+
+.topM {
+  margin-top: 50px;
 }
 </style>

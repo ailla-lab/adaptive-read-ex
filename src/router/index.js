@@ -17,7 +17,7 @@ const routes = [
     },
   },
   {
-    path: "/reading-speed-test",
+    path: "/reading-speed",
     name: "ReadingSpeed",
     component: ReadingSpeed,
   },
