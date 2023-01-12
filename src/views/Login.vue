@@ -15,7 +15,11 @@
         />
         <div class="form-group">
           <label for="exampleFormControlSelect1">Group select</label>
-          <select class="form-control" id="exampleFormControlSelect1">
+          <select
+            class="form-control"
+            id="exampleFormControlSelect1"
+            v-model="register_form.group"
+          >
             <option>A</option>
             <option>B</option>
             <option>C</option>
@@ -59,7 +63,7 @@ export default {
 
     const register = () => {
       store.dispatch("register", register_form.value);
-      console.log(register_form.value);
+      console.log("coming from login page", register_form.value);
     };
 
     return {

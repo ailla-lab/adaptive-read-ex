@@ -1,8 +1,9 @@
 <template>
   <div class="container mt-10">
     <div>
-      Selected: {{ selected }} and current Group {{ userGroup }} and current
-      page {{ cuurentPage }} start time {{ startReadingTime }} and end time
+      {{ userId }} selected: {{ selected }} and current Group
+      {{ userGroup }} and current page {{ cuurentPage }} start time
+      {{ startReadingTime }} and end time
       {{ endReadingTime }}
     </div>
     <div class="mobileContainer">
@@ -97,16 +98,26 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import { getDatabase, ref, set } from "firebase/database";
-
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 export default {
   name: "ArticleThree",
   data() {
     return {
       readingSpeed: this.$store.state.readingSpeed,
-      userGroup: "C",
+      userGroup: this.$store.state.group,
+      userId: this.$store.state.user,
       showFinishBtn: false,
+      cuurentPage: 0,
+      currentPar: "",
+
+      startReadingTime: 0,
+      endReadingTime: 0,
+      showNextBtn: false,
+      showStartBtn: true,
+      showQ: false,
       paragraphs: [
         {
           id: 0,
@@ -169,25 +180,19 @@ export default {
           correctAnswer: "C",
         },
       ],
-      cuurentPage: 0,
-      currentPar: "",
-
-      startReadingTime: 0,
-      endReadingTime: 0,
-      showNextBtn: false,
-      showStartBtn: true,
-      showQ: false,
     };
   },
   computed: {
     ...mapState(["readingSpeed"]),
+    ...mapGetters({ userGroup: "getUserGroup" }),
   },
   methods: {
-    writeUserData(userId, article_id) {
+    writeUserData(userId) {
       const db = getDatabase();
-      set(ref(db, "users/" + userId), {
-        article_id,
+      set(ref(db, "user/" + userId), {
+        article_id: this.questions[this.cuurentPage].id,
       });
+      console.log("sent");
     },
     start() {
       this.startReadingTime = Date.now();
@@ -211,14 +216,24 @@ export default {
       this.$router.push("/");
     },
 
+    async getAllDoc() {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+      });
+    },
+
     // TODO reading time
     // this.endReadingTime = Date.now() - this.startReadingTime;
     // this.startReadingTime = Date.now();
     next() {
+      this.getAllDoc();
       if (this.cuurentPage < this.paragraphs.length) {
         if (this.userGroup === "A") {
           const par = this.paragraphs[this.cuurentPage].orginalText;
           this.currentPar = par;
+          this.writeUserData(this.userId);
           this.cuurentPage++;
         } else if (this.userGroup === "B") {
           this.endReadingTime = Date.now() - this.startReadingTime;
@@ -250,7 +265,7 @@ export default {
   margin-top: 10rem;
 }
 p {
-  font-size: 25px;
+  font-size: 22px;
   text-align: justify;
 }
 .mobileContainer {
@@ -278,7 +293,7 @@ p {
   margin-bottom: 40px;
 }
 .btn {
-  font-size: 26px;
+  font-size: 22px;
 }
 #item {
   font-size: 22px;

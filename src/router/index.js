@@ -42,7 +42,7 @@ const routes = [
     name: "ArticleThree",
     component: ArticleThree,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {

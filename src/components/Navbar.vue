@@ -16,7 +16,13 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link right" aria-current="page" href="#">Log out</a>
+          <!-- <a class="nav-link right" aria-current="page" href="#">Log out</a> -->
+          <button
+            @click.prevent="signOut"
+            class="btn btn-primary nav-link right"
+          >
+            Log Out
+          </button>
         </div>
       </div>
     </div>
@@ -24,8 +30,21 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+const store = useStore();
+const router = useRouter();
+
 export default {
   name: "NavBar",
+
+  methods: {
+    async signOut() {
+      await store.dispatch("logout");
+      router.push("/login");
+    },
+  },
 };
 </script>
 

@@ -11,12 +11,12 @@ export default createStore({
   state: {
     user: null,
     id: null,
-    group: "A",
+    group: "not changed",
     readingSpeed: 1500,
   },
   mutations: {
     SET_USER(state, user, group) {
-      state.user = user;
+      state.user = user.uid;
       state.group = group;
     },
 
@@ -59,7 +59,7 @@ export default createStore({
     async register({ commit }, details) {
       const { email, password, group } = details;
       this.state.group = group;
-      console.log("group is", this.state.group);
+      console.log("from store", this.state.group);
 
       try {
         await createUserWithEmailAndPassword(auth, email, password);
