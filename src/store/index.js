@@ -1,11 +1,13 @@
 import { createStore } from "vuex";
 import router from "../router";
 import { auth } from "../firebase";
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+// import { collection, getDocs } from "firebase/firestore";
 
 export default createStore({
   state: {
@@ -62,6 +64,7 @@ export default createStore({
       const { email, password, group, studentid } = details;
       this.state.group = group;
       this.state.studentid = studentid;
+
       console.log("from store", this.state.group);
 
       try {

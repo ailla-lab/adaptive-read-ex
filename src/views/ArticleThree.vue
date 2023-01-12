@@ -101,6 +101,7 @@
 import { mapState, mapGetters } from "vuex";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+
 export default {
   name: "ArticleThree",
   data() {
@@ -111,7 +112,6 @@ export default {
       showFinishBtn: false,
       cuurentPage: 0,
       currentPar: "",
-
       startReadingTime: 0,
       endReadingTime: 0,
       showNextBtn: false,
@@ -187,14 +187,15 @@ export default {
   },
   methods: {
     writeUserData() {
-      addDoc(collection(db, "users"), {
-        article_id: 1,
+      addDoc(collection(db, "responses"), {
+        article_id: 12,
         group: "A",
         paragraph_id: 1000,
         question_id: 500,
-        resposne: "A",
+        answer: "A",
         score: false,
-        studentid: 90090,
+        studentid: 0,
+        user_uid: this.$store.state.user.uid,
       });
       console.log("sent");
     },
@@ -212,16 +213,19 @@ export default {
         this.currentPar = par;
       }
     },
-    // sendResult() {
-
+    // writeUserData(user) {
+    //   getDocs(collection(db, "users/" + user.uid))
+    //     .set(user)
+    //     .catch((error) => {
+    //       console.log(error.message);
+    //     });
     // },
     finishTest() {
-      // this.sendResult()
       this.$router.push("/");
     },
 
     async getAllDoc() {
-      const querySnapshot = await getDocs(collection(db, "users"));
+      const querySnapshot = await getDocs(collection(db, "responses"));
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
@@ -231,8 +235,8 @@ export default {
     // TODO reading time
     // this.endReadingTime = Date.now() - this.startReadingTime;
     // this.startReadingTime = Date.now();
-    next() {
-      this.writeUserData();
+    async next() {
+      await this.writeUserData();
       if (this.cuurentPage < this.paragraphs.length) {
         if (this.userGroup === "A") {
           const par = this.paragraphs[this.cuurentPage].orginalText;
