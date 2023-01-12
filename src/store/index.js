@@ -11,6 +11,7 @@ export default createStore({
   state: {
     user: null,
     id: null,
+    studentid: null,
     group: "not changed",
     readingSpeed: 1500,
   },
@@ -52,13 +53,15 @@ export default createStore({
       }
 
       commit("SET_USER", auth.currentUser);
+      console.log("from store", auth.currentUser);
 
       router.push("/");
     },
 
     async register({ commit }, details) {
-      const { email, password, group } = details;
+      const { email, password, group, studentid } = details;
       this.state.group = group;
+      this.state.studentid = studentid;
       console.log("from store", this.state.group);
 
       try {
@@ -120,16 +123,6 @@ export default createStore({
     },
     getReadingSpeed(state) {
       return state.readingSpeed;
-    },
-
-    filterArticles(state) {
-      if (state.group == "A") {
-        return state.artciles.filter((article) => article.hard == false);
-      } else if (state.group == "B") {
-        return state.artciles.filter((article) => article.hard == true);
-      } else {
-        console.log("nothing worked out");
-      }
     },
   },
 });

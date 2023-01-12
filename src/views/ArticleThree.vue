@@ -99,8 +99,7 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import { getDatabase, ref, set } from "firebase/database";
-import { collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 export default {
   name: "ArticleThree",
@@ -187,10 +186,15 @@ export default {
     ...mapGetters({ userGroup: "getUserGroup" }),
   },
   methods: {
-    writeUserData(userId) {
-      const db = getDatabase();
-      set(ref(db, "user/" + userId), {
-        article_id: this.questions[this.cuurentPage].id,
+    writeUserData() {
+      addDoc(collection(db, "users"), {
+        article_id: 1,
+        group: "A",
+        paragraph_id: 1000,
+        question_id: 500,
+        resposne: "A",
+        score: false,
+        studentid: 90090,
       });
       console.log("sent");
     },
@@ -228,12 +232,12 @@ export default {
     // this.endReadingTime = Date.now() - this.startReadingTime;
     // this.startReadingTime = Date.now();
     next() {
-      this.getAllDoc();
+      this.writeUserData();
       if (this.cuurentPage < this.paragraphs.length) {
         if (this.userGroup === "A") {
           const par = this.paragraphs[this.cuurentPage].orginalText;
           this.currentPar = par;
-          this.writeUserData(this.userId);
+
           this.cuurentPage++;
         } else if (this.userGroup === "B") {
           this.endReadingTime = Date.now() - this.startReadingTime;

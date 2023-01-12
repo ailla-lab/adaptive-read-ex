@@ -13,6 +13,11 @@
           placeholder="Password"
           v-model="register_form.password"
         />
+        <input
+          type="number"
+          placeholder="Student ID"
+          v-model="register_form.studentid"
+        />
         <div class="form-group">
           <label for="exampleFormControlSelect1">Group select</label>
           <select
