@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -186,6 +186,7 @@ export default {
     ...mapGetters({ userGroup: "getUserGroup" }),
   },
   methods: {
+    ...mapActions(["check"]),
     writeUserData() {
       addDoc(collection(db, "responses"), {
         article_id: 12,
@@ -200,6 +201,7 @@ export default {
       console.log("sent");
     },
     start() {
+      this.check();
       this.startReadingTime = Date.now();
       this.showStartBtn = false;
       this.showNextBtn = true;

@@ -14,8 +14,9 @@ export default createStore({
     user: null,
     id: null,
     studentid: null,
-    group: "not changed",
-    readingSpeed: 1500,
+    email: null,
+    group: null,
+    readingSpeed: 0,
   },
   mutations: {
     SET_USER(state, user, group) {
@@ -36,6 +37,7 @@ export default createStore({
   actions: {
     async login({ commit }, details) {
       const { email, password } = details;
+      this.state.email = email;
 
       try {
         await signInWithEmailAndPassword(auth, email, password);
@@ -65,8 +67,6 @@ export default createStore({
       this.state.group = group;
       this.state.studentid = studentid;
 
-      console.log("from store", this.state.group);
-
       try {
         await createUserWithEmailAndPassword(auth, email, password);
       } catch (error) {
@@ -89,7 +89,6 @@ export default createStore({
 
         return;
       }
-
       commit("SET_USER", auth.currentUser);
 
       router.push("/");
@@ -101,6 +100,10 @@ export default createStore({
       commit("CLEAR_USER");
 
       router.push("/login");
+    },
+
+    check() {
+      alert(this.state.user);
     },
 
     fetchUser({ commit }) {

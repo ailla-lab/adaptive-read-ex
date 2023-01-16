@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">MyReader</a>
+      <a class="navbar-brand mylogo" href="#">MyReader</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -15,10 +15,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
           <!-- <a class="nav-link right" aria-current="page" href="#">Log out</a> -->
           <button
-            @click.prevent="signOut"
+            @click.prevent="logout"
             class="btn btn-primary nav-link right"
           >
             Log Out
@@ -30,30 +30,29 @@
 </template>
 
 <script>
-import { useStore } from "vuex";
-import { useRouter } from "vue-router";
-
-const store = useStore();
-const router = useRouter();
+import { mapActions } from "vuex";
 
 export default {
   name: "NavBar",
 
   methods: {
-    async signOut() {
-      await store.dispatch("logout");
-      router.push("/login");
-    },
+    ...mapActions(["logout"]),
   },
 };
 </script>
 
 <style>
+.mylogo {
+  padding-left: 10px;
+}
 .bg-dark-blue {
   background-color: rgb(23, 12, 108);
 }
 .right {
+  color: azure;
+  font-size: 15px;
   position: absolute;
-  right: 20px;
+  top: 5px;
+  right: 30px;
 }
 </style>

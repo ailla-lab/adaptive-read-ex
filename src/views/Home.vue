@@ -1,26 +1,33 @@
 <template>
   <NavBar />
+  <div v-if="noReadingScore">
+    <div class="alert alert-primary" role="alert">
+      Before you start, you should take the reading speed test
+    </div>
+  </div>
+
   <div class="container tm-50">
     <div class="row mt-4">
-      <div class="col-sm-4">
-        <div class="card border colorBg">
+      <div v-if="noReadingScore" class="col-sm-4">
+        <div class="card text-bg-light">
           <div class="card-body">
             <h5 class="card-title">Reading speed Test</h5>
-
             <router-link class="btn" to="/reading-speed">Start</router-link>
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div v-if="readingScoreExist" class="col-sm-4">
         <div class="card border">
+          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
             <h5 class="card-title">Article One</h5>
             <router-link class="btn" to="/article1">Read</router-link>
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div v-if="readingScoreExist" class="col-sm-4">
         <div class="card border">
+          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
             <h5 class="card-title">Title Two</h5>
             <router-link class="btn" to="/article2">Read</router-link>
@@ -30,8 +37,9 @@
     </div>
 
     <div class="row mt-4">
-      <div class="col-sm-4">
+      <div v-if="readingScoreExist" class="col-sm-4">
         <div class="card border border-dark">
+          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
             <h5 class="card-title">Title Three</h5>
             <router-link class="btn" to="/article3">Read</router-link>
@@ -39,7 +47,8 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="card border border-dark">
+        <div v-if="readingScoreExist" class="card border border-dark">
+          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
             <h5 class="card-title">Title Two</h5>
             <a href="#" class="btn">Read</a>
@@ -47,7 +56,8 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="card border border-dark">
+        <div v-if="readingScoreExist" class="card border border-dark">
+          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
             <h5 class="card-title">Title Three</h5>
             <a href="#" class="btn">Read</a>
@@ -61,18 +71,34 @@
 
 <script>
 import NavBar from "@/components/Navbar";
+import { mapState } from "vuex";
 
 export default {
   name: "Home",
   components: {
     NavBar,
   },
+  data() {
+    return {
+      noReadingScore: true,
+      readingScoreExist: false,
+    };
+  },
+  computed: {
+    ...mapState(["readingSpeed"]),
+  },
 };
 </script>
 
 <style scoped>
+.alert {
+  font-size: 20px;
+}
 .card {
   min-height: 140px;
+}
+.imgHeight {
+  height: 200px;
 }
 .colorBg {
   background-color: #e7e9eb;

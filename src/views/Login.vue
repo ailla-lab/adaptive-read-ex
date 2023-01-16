@@ -19,7 +19,7 @@
           v-model="register_form.studentid"
         />
         <div class="form-group">
-          <label for="exampleFormControlSelect1">Group select</label>
+          <label for="exampleFormControlSelect1">Select Your Group </label>
           <select
             class="form-control"
             id="exampleFormControlSelect1"
