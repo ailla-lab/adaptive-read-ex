@@ -68,7 +68,7 @@ export default {
 
     const register = () => {
       store.dispatch("register", register_form.value);
-      console.log("coming from login page", register_form.value);
+      // console.log("coming from login page", register_form.value);
     };
 
     return {

@@ -1,13 +1,14 @@
 import { createStore } from "vuex";
 import router from "../router";
 import { auth } from "../firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-// import { collection, getDocs } from "firebase/firestore";
 
 export default createStore({
   state: {
@@ -15,13 +16,14 @@ export default createStore({
     id: null,
     studentid: null,
     email: null,
-    group: null,
+    group: "A",
     readingSpeed: 0,
   },
   mutations: {
-    SET_USER(state, user, group) {
-      state.user = user.uid;
-      state.group = group;
+    SET_USER(state, details) {
+      state.email = details.email;
+      state.group = details.group;
+      state.studentid = details.studentid;
     },
 
     CLEAR_USER(state) {
@@ -34,10 +36,21 @@ export default createStore({
       state.readingSpeed = readingSpeed;
     },
   },
+
   actions: {
+    addStudent() {
+      try {
+        addDoc(collection(db, "students"), {
+          id: this.state.studentid,
+          email: this.state.email,
+          group: this.state.group,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async login({ commit }, details) {
       const { email, password } = details;
-      this.state.email = email;
 
       try {
         await signInWithEmailAndPassword(auth, email, password);
@@ -56,16 +69,15 @@ export default createStore({
         return;
       }
 
-      commit("SET_USER", auth.currentUser);
-      console.log("from store", auth.currentUser);
+      commit("SET_USER", details);
+      console.log(auth.currentUser);
 
       router.push("/");
     },
 
     async register({ commit }, details) {
       const { email, password, group, studentid } = details;
-      this.state.group = group;
-      this.state.studentid = studentid;
+      console.log(group, studentid);
 
       try {
         await createUserWithEmailAndPassword(auth, email, password);
@@ -89,8 +101,7 @@ export default createStore({
 
         return;
       }
-      commit("SET_USER", auth.currentUser);
-
+      commit("SET_USER", details);
       router.push("/");
     },
 
@@ -100,10 +111,6 @@ export default createStore({
       commit("CLEAR_USER");
 
       router.push("/login");
-    },
-
-    check() {
-      alert(this.state.user);
     },
 
     fetchUser({ commit }) {
@@ -132,3 +139,5 @@ export default createStore({
     },
   },
 });
+// Todo watch this
+// https://www.koderhq.com/tutorial/vue/firestore-database/#adddoc

@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -106,9 +106,10 @@ export default {
   name: "ArticleThree",
   data() {
     return {
-      readingSpeed: this.$store.state.readingSpeed,
-      userGroup: this.$store.state.group,
-      userId: this.$store.state.user,
+      readingSpeed: "",
+      userGroup: "",
+      userId: "",
+      email: "",
       showFinishBtn: false,
       cuurentPage: 0,
       currentPar: "",
@@ -181,27 +182,33 @@ export default {
       ],
     };
   },
+  created() {
+    this.readingSpeed = this.$store.state.readingSpeed;
+    this.userGroup = this.$store.state.group;
+    this.userId = this.$store.state.user;
+    this.email = this.$store.state.email;
+  },
   computed: {
-    ...mapState(["readingSpeed"]),
+    ...mapState([["readingSpeed"]]),
     ...mapGetters({ userGroup: "getUserGroup" }),
   },
+
   methods: {
-    ...mapActions(["check"]),
-    writeUserData() {
-      addDoc(collection(db, "responses"), {
+    async writeUserData() {
+      await addDoc(collection(db, "responses"), {
         article_id: 12,
-        group: "A",
+        group: this.userGroup,
         paragraph_id: 1000,
         question_id: 500,
         answer: "A",
         score: false,
         studentid: 0,
-        user_uid: this.$store.state.user.uid,
+        // user_uid: this.userId,
+        email: this.email,
       });
       console.log("sent");
     },
     start() {
-      this.check();
       this.startReadingTime = Date.now();
       this.showStartBtn = false;
       this.showNextBtn = true;
@@ -223,6 +230,7 @@ export default {
     //     });
     // },
     finishTest() {
+      this.writeUserData();
       this.$router.push("/");
     },
 
@@ -238,7 +246,6 @@ export default {
     // this.endReadingTime = Date.now() - this.startReadingTime;
     // this.startReadingTime = Date.now();
     async next() {
-      await this.writeUserData();
       if (this.cuurentPage < this.paragraphs.length) {
         if (this.userGroup === "A") {
           const par = this.paragraphs[this.cuurentPage].orginalText;
