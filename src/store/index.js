@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import router from "../router";
 import { auth } from "../firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, where, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
 import {
@@ -13,10 +13,9 @@ import {
 export default createStore({
   state: {
     user: null,
-    id: null,
     studentid: null,
     email: null,
-    group: "A",
+    group: "",
     readingSpeed: 0,
   },
   mutations: {
@@ -38,16 +37,30 @@ export default createStore({
   },
 
   actions: {
-    addStudent() {
+    async queryStudent({ commit }, details) {
+      const studentsRef = collection(db, "students");
+      const q = query(studentsRef, where("email", "==", details.email));
       try {
-        addDoc(collection(db, "students"), {
-          id: this.state.studentid,
-          email: this.state.email,
-          group: this.state.group,
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          console.log("coming from store", doc.id, " => ", doc.data());
         });
       } catch (error) {
         console.log(error);
       }
+      commit("SET_USER", details);
+    },
+    async addStudent({ commit }, details) {
+      try {
+        addDoc(collection(db, "students"), {
+          studentid: details.studentid,
+          email: details.email,
+          group: details.group,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      commit("SET_USER", details);
     },
     async login({ commit }, details) {
       const { email, password } = details;

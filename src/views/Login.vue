@@ -64,10 +64,12 @@ export default {
 
     const login = () => {
       store.dispatch("login", login_form.value);
+      store.dispatch("queryStudent", login_form.value);
     };
 
     const register = () => {
       store.dispatch("register", register_form.value);
+      store.dispatch("addStudent", register_form.value);
       // console.log("coming from login page", register_form.value);
     };
 

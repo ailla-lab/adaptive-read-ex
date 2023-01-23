@@ -7,7 +7,7 @@
   </div>
 
   <div class="container tm-50">
-    <p>{{ user["uid"] }}</p>
+    <p>{{ user }}</p>
     <div class="row mt-4">
       <div v-if="noReadingScore" class="col-sm-4">
         <div class="card text-bg-light">
@@ -70,14 +70,9 @@
   <!-- </div> -->
 </template>
 
-todo first make sure to add user id to the colelction and then query the
-collection for the user id and then get info or update Readd this
-https://firebase.google.com/docs/firestore/query-data/queries //
 <script>
 import NavBar from "@/components/Navbar";
 import { mapState } from "vuex";
-import { getAuth } from "firebase/auth";
-import { useStore } from "vuex";
 
 export default {
   name: "Home",
@@ -92,17 +87,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["readingSpeed"]),
-  },
-  created() {
-    const store = useStore();
-    const auth = getAuth();
-    this.user = auth.currentUser;
-    if (this.user) {
-      store.dispatch("addStudent");
-    } else {
-      console.log("user is not lioggiend");
-    }
+    ...mapState(["readingSpeed", "group"]),
   },
 };
 </script>
