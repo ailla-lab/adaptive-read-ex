@@ -33,7 +33,7 @@ export default createStore({
       state.group = details.group;
       state.studentid = details.studentid;
       console.log(
-        "the current state is",
+        "the current state from mutatuion is",
         this.state.group,
         this.state.studentid
       );
@@ -41,6 +41,9 @@ export default createStore({
 
     CLEAR_USER(state) {
       state.user = null;
+    },
+    SET_LOOGIED_USER(state) {
+      state.user = auth.currentUser;
     },
     addUserID(state, id) {
       state.id = id;
@@ -102,9 +105,7 @@ export default createStore({
         return;
       }
 
-      commit("SET_USER", details);
-      console.log(auth.currentUser);
-
+      commit("SET_LOOGIED_USER", auth);
       router.push("/");
     },
 

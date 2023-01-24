@@ -10,7 +10,7 @@ import { auth } from "../firebase";
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
     meta: {
       requiresAuth: true,
@@ -26,7 +26,7 @@ const routes = [
     name: "ArticleOne",
     component: ArticleOne,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -34,7 +34,7 @@ const routes = [
     name: "ArticleTwo",
     component: ArticleTwo,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {

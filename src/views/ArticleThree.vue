@@ -1,17 +1,19 @@
 <template>
-  <div class="container mt-10">
+  <NavBar />
+  <div class="container mt-5">
     <div>
-      {{ userId }} selected: {{ selected }} and current Group
+      {{ studentid }} selected: {{ selected }} and current Group
       {{ userGroup }} and current page {{ cuurentPage }} start time
       {{ startReadingTime }} and end time
       {{ endReadingTime }}
     </div>
     <div class="mobileContainer">
       <div class="row">
+        <h4>{{ title }}</h4>
         <p>{{ currentPar }}</p>
       </div>
 
-      <div v-show="showQ" class="row border topM">
+      <div v-show="showQ" class="row topM">
         <p id="item">
           Q{{ questions[cuurentPage].id }}: {{ questions[cuurentPage].q }}
         </p>
@@ -98,17 +100,21 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+// import { mapState, mapGetters } from "vuex";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
 
+import NavBar from "@/components/Navbar";
 export default {
   name: "ArticleThree",
+  components: {
+    NavBar,
+  },
   data() {
     return {
       readingSpeed: "",
       userGroup: "",
-      userId: "",
+      studentid: "",
       email: "",
       showFinishBtn: false,
       cuurentPage: 0,
@@ -118,6 +124,7 @@ export default {
       showNextBtn: false,
       showStartBtn: true,
       showQ: false,
+      title: "Reading Three",
       paragraphs: [
         {
           id: 0,
@@ -185,26 +192,28 @@ export default {
   created() {
     this.readingSpeed = this.$store.state.readingSpeed;
     this.userGroup = this.$store.state.group;
-    this.userId = this.$store.state.user;
+    this.studentid = this.$store.state.studentid;
     this.email = this.$store.state.email;
   },
-  computed: {
-    ...mapState([["readingSpeed"]]),
-    ...mapGetters({ userGroup: "getUserGroup" }),
-  },
+  // computed: {
+  //   ...mapState([["readingSpeed"]]),
+  //   ...mapGetters({ userGroup: "getUserGroup" }),
+  // },
 
   methods: {
     async writeUserData() {
       await addDoc(collection(db, "responses"), {
-        article_id: 12,
+        studentid: this.studentid,
+        email: this.email,
         group: this.userGroup,
+        time: Date.now(),
+        title: this.title,
+        article_id: 12,
+
         paragraph_id: 1000,
         question_id: 500,
         answer: "A",
         score: false,
-        studentid: 0,
-        // user_uid: this.userId,
-        email: this.email,
       });
       console.log("sent");
     },
@@ -222,24 +231,9 @@ export default {
         this.currentPar = par;
       }
     },
-    // writeUserData(user) {
-    //   getDocs(collection(db, "users/" + user.uid))
-    //     .set(user)
-    //     .catch((error) => {
-    //       console.log(error.message);
-    //     });
-    // },
     finishTest() {
       this.writeUserData();
       this.$router.push("/");
-    },
-
-    async getAllDoc() {
-      const querySnapshot = await getDocs(collection(db, "responses"));
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-      });
     },
 
     // TODO reading time

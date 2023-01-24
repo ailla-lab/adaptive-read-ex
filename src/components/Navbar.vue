@@ -1,7 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue">
     <div class="container-fluid">
-      <a class="navbar-brand mylogo" href="#">MyReader</a>
+      <router-link class="navbar-brand mylogo" to="/">MyReader</router-link>
+
       <button
         class="navbar-toggler"
         type="button"
