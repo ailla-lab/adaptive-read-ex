@@ -5,9 +5,11 @@
       Before you start {{ user }}, you should take the reading speed test
     </div>
   </div>
+  <div class="alert alert-primary" role="alert">
+    Welcome {{ studentid }} and {{ group }}
+  </div>
 
   <div class="container tm-50">
-    <p>{{ user }}</p>
     <div class="row mt-4">
       <div v-if="noReadingScore" class="col-sm-4">
         <div class="card text-bg-light">
@@ -87,7 +89,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["readingSpeed", "group"]),
+    ...mapState(["readingSpeed", "group", "studentid"]),
   },
 };
 </script>

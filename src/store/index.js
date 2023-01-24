@@ -1,7 +1,15 @@
 import { createStore } from "vuex";
 import router from "../router";
 import { auth } from "../firebase";
-import { addDoc, collection, where, query, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  where,
+  query,
+  getDocs,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import { db } from "../firebase";
 
 import {
@@ -16,6 +24,7 @@ export default createStore({
     studentid: null,
     email: null,
     group: "",
+    documentID: null,
     readingSpeed: 0,
   },
   mutations: {
@@ -23,6 +32,11 @@ export default createStore({
       state.email = details.email;
       state.group = details.group;
       state.studentid = details.studentid;
+      console.log(
+        "the current state is",
+        this.state.group,
+        this.state.studentid
+      );
     },
 
     CLEAR_USER(state) {
@@ -40,15 +54,21 @@ export default createStore({
     async queryStudent({ commit }, details) {
       const studentsRef = collection(db, "students");
       const q = query(studentsRef, where("email", "==", details.email));
-      try {
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          console.log("coming from store", doc.id, " => ", doc.data());
-        });
-      } catch (error) {
-        console.log(error);
-      }
-      commit("SET_USER", details);
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        this.state.documentID = doc.id.toString();
+      });
+
+      const docRef = doc(db, "students", this.state.documentID);
+      const docSnap = await getDoc(docRef);
+      console.log("Document data:", docSnap.data().email);
+
+      const dataFromDatbase = {
+        email: docSnap.data().email,
+        studentid: docSnap.data().studentid,
+        group: docSnap.data().group,
+      };
+      commit("SET_USER", dataFromDatbase);
     },
     async addStudent({ commit }, details) {
       try {
@@ -90,7 +110,7 @@ export default createStore({
 
     async register({ commit }, details) {
       const { email, password, group, studentid } = details;
-      console.log(group, studentid);
+      console.log(studentid, "with", group, "has registered");
 
       try {
         await createUserWithEmailAndPassword(auth, email, password);
