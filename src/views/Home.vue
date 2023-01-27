@@ -21,9 +21,9 @@
       </div>
       <div v-if="readingScoreExist" class="col-sm-4">
         <div class="card border">
-          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
+          <img src="@/assets/rh.jpeg" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
-            <h5 class="card-title">Article One</h5>
+            <h5 class="card-title">Spain’s Robin Hood</h5>
             <router-link class="btn" to="/article1">Read</router-link>
           </div>
         </div>
