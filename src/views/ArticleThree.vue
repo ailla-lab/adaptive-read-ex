@@ -116,20 +116,20 @@ export default {
       userGroup: "",
       studentid: "",
       email: "",
-      showFinishBtn: false,
       cuurentPage: 0,
       currentPar: "",
       startReadingTime: 0,
       endReadingTime: 0,
+      showFinishBtn: false,
       showNextBtn: false,
       showStartBtn: true,
       showQ: false,
-      title: "Reading Three",
+      title: "Spain’s Robin Hood",
       paragraphs: [
         {
           id: 0,
           orginalText:
-            "[ORGINAL] We always recommend aiming for a Readable grade A. This ensures that your writing will reach the general public. If you'r measuring your text with the Flesch Kincaid Grade Level, we recommend aiming for a FK Grade 8. This corresponds to 8th Grade in the USA education system. It is recommended for the general public. It doesn't mean you're writing for an eighth-grader. Certainly, an eighth-gradercan understand your content if it's written to that level. But writers and marketers from a wide variety of fields can benefit from this. Adults enjoy reading several grades below their actual reading level. Further, a lower Flesch-Kincaid Grade Level makes your content skimmable. This saves your reader's time. It also saves your time by reducing queries.",
+            "They call him the Robin Hood of the banks, <A3><A1>a man who took out dozens of loans, worth almost half a million euros, with no intention of ever paying them back. Instead, Enric Duran handed the money out to projects that created and promoted alternatives to capitalism.</A1></A3> <D3><D1>After 14 months in hiding,</D1></D3> <D2>Duran is unapologetic, even though his activities could land him in jail.I’m proud of what I did,'he said in an interview by Skype from an undisclosed location' ",
           easyText:
             "[MODIFED] We always recommend aiming for a Readable grade A. This ensures that your writing will reach the general public. If you're measuring your text with the Flesch Kincaid Grade Level, we recommend  aiming for a FK Grade 8. This corresponds to 8th Grade in the USA education system. It is recommended for the general public. It doesn't mean you're writing for an eighth-grader. Certainly, an eighth-grader can understand your content if it's written to that level. But writers  and marketers from a wide variety of fields can benefit from this.  Adults enjoy reading several grades below their actual reading level. Further, a lower Flesch-Kincaid Grade Level makes your content skimmable. This saves your reader's time. It also saves your time by reducing queries.",
         },
@@ -151,7 +151,7 @@ export default {
       selected: "",
       questions: [
         {
-          id: 0,
+          id: 1,
           q: "this is question one",
           A: "Option A",
           B: "Option B",
@@ -160,7 +160,7 @@ export default {
           correctAnswer: "C",
         },
         {
-          id: 1,
+          id: 2,
           q: "this is question Two",
           A: "Option A",
           B: "Option B",
@@ -169,7 +169,7 @@ export default {
           correctAnswer: "C",
         },
         {
-          id: 2,
+          id: 3,
           q: "this is question Three",
           A: "Option A",
           B: "Option B",
@@ -178,7 +178,7 @@ export default {
           correctAnswer: "C",
         },
         {
-          id: 3,
+          id: 4,
           q: "this is question Four",
           A: "Option A",
           B: "Option B",
@@ -206,23 +206,22 @@ export default {
         studentid: this.studentid,
         email: this.email,
         group: this.userGroup,
-        time: Date.now(),
+        startReadingTime: this.startReadingTime,
+        endReadingTime: this.endReadingTime,
         title: this.title,
-        article_id: 12,
-
-        paragraph_id: 1000,
-        question_id: 500,
-        answer: "A",
+        answer: this.selected,
+        paragraph_id: this.paragraphs[this.cuurentPage].id,
+        question_id: this.questions[this.cuurentPage].id,
         score: false,
       });
       console.log("sent");
     },
     start() {
-      this.startReadingTime = Date.now();
+      this.startReadingTime = new Date().getSeconds();
       this.showStartBtn = false;
       this.showNextBtn = true;
       this.showQ = true;
-      this.cuurentPage++;
+      // at start all group get orignal text except group B
       if (this.userGroup === "B") {
         const par = this.paragraphs[this.cuurentPage].easyText;
         this.currentPar = par;
@@ -232,39 +231,47 @@ export default {
       }
     },
     finishTest() {
-      this.writeUserData();
       this.$router.push("/");
     },
 
-    // TODO reading time
-    // this.endReadingTime = Date.now() - this.startReadingTime;
-    // this.startReadingTime = Date.now();
     async next() {
       if (this.cuurentPage < this.paragraphs.length) {
         if (this.userGroup === "A") {
           const par = this.paragraphs[this.cuurentPage].orginalText;
           this.currentPar = par;
-
+          this.endReadingTime = new Date().getSeconds() - this.startReadingTime;
+          this.startReadingTime = new Date().getSeconds();
+          this.writeUserData();
           this.cuurentPage++;
         } else if (this.userGroup === "B") {
-          this.endReadingTime = Date.now() - this.startReadingTime;
-          this.startReadingTime = Date.now();
           const par = this.paragraphs[this.cuurentPage].easyText;
           this.currentPar = par;
+          this.endReadingTime = new Date().getSeconds() - this.startReadingTime;
+          this.startReadingTime = new Date().getSeconds();
+          this.writeUserData();
           this.cuurentPage++;
         } else {
           if (this.questions[this.cuurentPage].correctAnswer != this.selected) {
             const par = this.paragraphs[this.cuurentPage].easyText;
             this.currentPar = par;
+            this.endReadingTime =
+              new Date().getSeconds() - this.startReadingTime;
+            this.startReadingTime = new Date().getSeconds();
+            this.writeUserData();
             this.cuurentPage++;
           } else {
             const par = this.paragraphs[this.cuurentPage].orginalText;
             this.currentPar = par;
+            this.endReadingTime =
+              new Date().getSeconds() - this.startReadingTime;
+            this.startReadingTime = new Date().getSeconds();
+            this.writeUserData();
             this.cuurentPage++;
           }
         }
       } else {
         this.showFinishBtn = true;
+        this.showNextBtn = false;
       }
     },
   },
@@ -311,6 +318,12 @@ p {
   font-weight: bold;
 }
 
+.form-check-input[type="radio"] {
+  border-radius: 50%;
+  color: blue;
+  border-color: blue;
+  background-color: lightcoral;
+}
 .topM {
   margin-top: 50px;
 }
