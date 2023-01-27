@@ -128,63 +128,57 @@ export default {
       paragraphs: [
         {
           id: 0,
-          orginalText:
-            "They call him the Robin Hood of the banks, <A3><A1>a man who took out dozens of loans, worth almost half a million euros, with no intention of ever paying them back. Instead, Enric Duran handed the money out to projects that created and promoted alternatives to capitalism.</A1></A3> <D3><D1>After 14 months in hiding,</D1></D3> <D2>Duran is unapologetic, even though his activities could land him in jail.I’m proud of what I did,'he said in an interview by Skype from an undisclosed location' ",
-          easyText:
-            "[MODIFED] We always recommend aiming for a Readable grade A. This ensures that your writing will reach the general public. If you're measuring your text with the Flesch Kincaid Grade Level, we recommend  aiming for a FK Grade 8. This corresponds to 8th Grade in the USA education system. It is recommended for the general public. It doesn't mean you're writing for an eighth-grader. Certainly, an eighth-grader can understand your content if it's written to that level. But writers  and marketers from a wide variety of fields can benefit from this.  Adults enjoy reading several grades below their actual reading level. Further, a lower Flesch-Kincaid Grade Level makes your content skimmable. This saves your reader's time. It also saves your time by reducing queries.",
+          orginalText: "",
+          easyText: "",
         },
         {
           id: 1,
-          orginalText:
-            "[ORGINAL} Readability is a measure of how easy a piece of text is to read. A readability score refers to the familiarity and structure o  your text. It can tell you what level of education someone will need   to be able to read a piece of text easily. The most common of these  scores is the Flesch Kincaid Grade Level. Readable's bespoke A-  rating gives you a holistic view of your readability. It takes several   widely-used formulas into account. Giving you goals to work towards and a score that's quick and easy to understand.",
-          easyText:
-            "[MODIFED] Readability is a measure of how easy a piece of text is to   read. A readability score refers to the familiarity and structure of         your text. It can tell you what level of education someone will need      to be able to read a piece of text easily. The most common of thes        scores is the Flesch Kincaid Grade Level. Readable's bespoke A-E    rating gives you a holistic view of your readability. It takes several widely-used formulas into account. Giving you goals to work towards   and a score that's quick and easy to understand.",
+          orginalText: "",
+          easyText: "",
         },
         {
           id: 2,
-          orginalText:
-            "[ORGINAL] The impact of poor readability on the success of content is  significant, and that is becoming more apparent as the river o      content we all experience grows into more of a torrent. Attention  spans are decreasing. Distractions are increasing. The 280 character   tweet is taking over from the 2000 word article. With all that in     mind, it's incredibly important that, in addition to writing   interesting and engaging content, you write it in a way that people   find easy to take in. So people are turning to software, not as a replacement for editorial expertise, but as a complement to it. A computer can quickly use algorithms like the Flesch Reading Ease or the Gunning Fog index to spot problematic passages of text. And that's    where we come in. At Readable.io, we are fascinated - almost obsessed    - with readability. We are always looking at more ways to measure it, more ways to recommend improvements, and more ways to help our    customers make readability scoring and analysis a core part of their   content management strategies. Our software can analyse anything you     can throw at it, from Word documents to entire websites, and help you   focus your efforts where they are going to have the maximum impact",
-          easyText:
-            "[MODIFED] The impact of poor readability on the success of content is significant, and that is becoming more apparent as the river of       content we all experience grows into more of a torrent. Attention   spans are decreasing. Distractions are increasing. The 280-character    tweet is taking over from the 2000 word article. With all that in   mind, it's incredibly important that, in addition to writing    interesting and engaging content, you write it in a way that people    find easy to take in. So people are turning to software, not as a   replacement for editorial expertise, but as a complement to it. A          computer can quickly use algorithms like the Flesch Reading Ease or          the Gunning Fog index to spot problematic passages of text. And that's          where we come in. At Readable.io, we are fascinated - almost obsessed      - with readability. We are always looking at more ways to measure it,     more ways to recommend improvements, and more ways to help our          customers make readability scoring and analysis a core part of their         content management strategies. Our software can analyse anything you       can throw at it, from Word documents to entire websites, and help you  focus your efforts where they are going to have the maximum impact",
+          orginalText: "",
+          easyText: "",
         },
       ],
       selected: "",
       questions: [
         {
           id: 1,
-          q: "this is question one",
-          A: "Option A",
-          B: "Option B",
-          C: "Option C",
-          D: "Option D",
-          correctAnswer: "C",
+          q: "",
+          A: "",
+          B: "",
+          C: "",
+          D: "",
+          correctAnswer: "",
         },
         {
           id: 2,
-          q: "this is question Two",
-          A: "Option A",
-          B: "Option B",
-          C: "Option C",
-          D: "Option D",
-          correctAnswer: "C",
+          q: "",
+          A: "",
+          B: "",
+          C: "",
+          D: "",
+          correctAnswer: "",
         },
         {
           id: 3,
-          q: "this is question Three",
-          A: "Option A",
-          B: "Option B",
-          C: "Option C",
-          D: "Option D",
-          correctAnswer: "C",
+          q: "",
+          A: "",
+          B: "",
+          C: "",
+          D: "",
+          correctAnswer: "",
         },
         {
           id: 4,
-          q: "this is question Four",
-          A: "Option A",
-          B: "Option B",
-          C: "Option C",
-          D: "Option D",
-          correctAnswer: "C",
+          q: "",
+          A: "",
+          B: "",
+          C: "",
+          D: "",
+          correctAnswer: "",
         },
       ],
     };
@@ -195,10 +189,6 @@ export default {
     this.studentid = this.$store.state.studentid;
     this.email = this.$store.state.email;
   },
-  // computed: {
-  //   ...mapState([["readingSpeed"]]),
-  //   ...mapGetters({ userGroup: "getUserGroup" }),
-  // },
 
   methods: {
     async writeUserData() {
@@ -326,5 +316,9 @@ p {
 }
 .topM {
   margin-top: 50px;
+}
+
+.footer {
+  margin-bottom: 200px;
 }
 </style>

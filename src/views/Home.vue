@@ -32,6 +32,15 @@
         <div class="card border">
           <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
+            <h5 class="card-title">Article One</h5>
+            <router-link class="btn" to="/article1">Read</router-link>
+          </div>
+        </div>
+      </div>
+      <div v-if="readingScoreExist" class="col-sm-4">
+        <div class="card border">
+          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
+          <div class="card-body">
             <h5 class="card-title">Title Two</h5>
             <router-link class="btn" to="/article2">Read</router-link>
           </div>
@@ -42,9 +51,9 @@
     <div class="row mt-4">
       <div v-if="readingScoreExist" class="col-sm-4">
         <div class="card border border-dark">
-          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
+          <img src="@/assets/rh.jpeg" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
-            <h5 class="card-title">Title Three</h5>
+            <h5 class="card-title">Spain’s Robin Hood</h5>
             <router-link class="btn" to="/article3">Read</router-link>
           </div>
         </div>
@@ -68,8 +77,8 @@
         </div>
       </div>
     </div>
+    <div class="footer"></div>
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -124,5 +133,9 @@ export default {
 }
 .tm-50 {
   margin-top: 100px;
+}
+
+.footer {
+  margin-bottom: 200px;
 }
 </style>

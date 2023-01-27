@@ -9,6 +9,11 @@ import { auth } from "../firebase";
 
 const routes = [
   {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
     path: "/",
     name: "home",
     component: Home,
@@ -44,11 +49,6 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
   },
 ];
 

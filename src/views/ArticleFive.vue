@@ -143,7 +143,7 @@ export default {
           easyText: "",
         },
       ],
-      selected: null,
+      selected: "",
       questions: [
         {
           id: 1,
@@ -207,7 +207,6 @@ export default {
       });
       console.log("sent");
     },
-
     start() {
       this.startReadingTime = new Date().getSeconds();
       this.showStartBtn = false;
@@ -227,19 +226,23 @@ export default {
     },
 
     async next() {
-      if (this.selected == null) {
-        alert("You need to answer the question");
-      } else {
-        if (this.cuurentPage < this.paragraphs.length) {
-          if (this.userGroup === "A") {
-            const par = this.paragraphs[this.cuurentPage].orginalText;
-            this.currentPar = par;
-            this.endReadingTime =
-              new Date().getSeconds() - this.startReadingTime;
-            this.startReadingTime = new Date().getSeconds();
-            this.writeUserData();
-            this.cuurentPage++;
-          } else if (this.userGroup === "B") {
+      if (this.cuurentPage < this.paragraphs.length) {
+        if (this.userGroup === "A") {
+          const par = this.paragraphs[this.cuurentPage].orginalText;
+          this.currentPar = par;
+          this.endReadingTime = new Date().getSeconds() - this.startReadingTime;
+          this.startReadingTime = new Date().getSeconds();
+          this.writeUserData();
+          this.cuurentPage++;
+        } else if (this.userGroup === "B") {
+          const par = this.paragraphs[this.cuurentPage].easyText;
+          this.currentPar = par;
+          this.endReadingTime = new Date().getSeconds() - this.startReadingTime;
+          this.startReadingTime = new Date().getSeconds();
+          this.writeUserData();
+          this.cuurentPage++;
+        } else {
+          if (this.questions[this.cuurentPage].correctAnswer != this.selected) {
             const par = this.paragraphs[this.cuurentPage].easyText;
             this.currentPar = par;
             this.endReadingTime =
@@ -248,30 +251,18 @@ export default {
             this.writeUserData();
             this.cuurentPage++;
           } else {
-            if (
-              this.questions[this.cuurentPage].correctAnswer != this.selected
-            ) {
-              const par = this.paragraphs[this.cuurentPage].easyText;
-              this.currentPar = par;
-              this.endReadingTime =
-                new Date().getSeconds() - this.startReadingTime;
-              this.startReadingTime = new Date().getSeconds();
-              this.writeUserData();
-              this.cuurentPage++;
-            } else {
-              const par = this.paragraphs[this.cuurentPage].orginalText;
-              this.currentPar = par;
-              this.endReadingTime =
-                new Date().getSeconds() - this.startReadingTime;
-              this.startReadingTime = new Date().getSeconds();
-              this.writeUserData();
-              this.cuurentPage++;
-            }
+            const par = this.paragraphs[this.cuurentPage].orginalText;
+            this.currentPar = par;
+            this.endReadingTime =
+              new Date().getSeconds() - this.startReadingTime;
+            this.startReadingTime = new Date().getSeconds();
+            this.writeUserData();
+            this.cuurentPage++;
           }
-        } else {
-          this.showFinishBtn = true;
-          this.showNextBtn = false;
         }
+      } else {
+        this.showFinishBtn = true;
+        this.showNextBtn = false;
       }
     },
   },
