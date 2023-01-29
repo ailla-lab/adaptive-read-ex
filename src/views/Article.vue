@@ -101,7 +101,7 @@ import { db } from "../firebase";
 
 import NavBar from "@/components/Navbar";
 export default {
-  name: "ArticleFour",
+  name: "ArticleThree",
   components: {
     NavBar,
   },
@@ -122,7 +122,7 @@ export default {
       showStartBtn: true,
       showFinishBtn: false,
       showQ: false,
-      title: "Nepal’s Tiger Population on the Rise",
+      title: "",
       paragraphs: [
         {
           id: 0,

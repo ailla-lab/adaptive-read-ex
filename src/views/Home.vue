@@ -30,19 +30,23 @@
       </div>
       <div v-if="readingScoreExist" class="col-sm-4">
         <div class="card border">
-          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
+          <img src="@/assets/lie.jpeg" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
-            <h5 class="card-title">Article One</h5>
-            <router-link class="btn" to="/article1">Read</router-link>
+            <h5 class="card-title">A New Form of Lie Detector Test</h5>
+            <router-link class="btn" to="/article2">Read</router-link>
           </div>
         </div>
       </div>
       <div v-if="readingScoreExist" class="col-sm-4">
         <div class="card border">
-          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
+          <img
+            src="@/assets/prison.jpeg"
+            class="card-img-top imgHeight"
+            alt=""
+          />
           <div class="card-body">
-            <h5 class="card-title">Title Two</h5>
-            <router-link class="btn" to="/article2">Read</router-link>
+            <h5 class="card-title">Why is Sweden Closing its Prisons?</h5>
+            <router-link class="btn" to="/article3">Read</router-link>
           </div>
         </div>
       </div>
@@ -51,10 +55,10 @@
     <div class="row mt-4">
       <div v-if="readingScoreExist" class="col-sm-4">
         <div class="card border border-dark">
-          <img src="@/assets/rh.jpeg" class="card-img-top imgHeight" alt="" />
+          <img src="@/assets/tiger.jpg" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
-            <h5 class="card-title">Spain’s Robin Hood</h5>
-            <router-link class="btn" to="/article3">Read</router-link>
+            <h5 class="card-title">Nepal’s Tiger Population on the Rise</h5>
+            <router-link class="btn" to="/article4">Read</router-link>
           </div>
         </div>
       </div>
@@ -63,16 +67,22 @@
           <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
             <h5 class="card-title">Title Two</h5>
-            <a href="#" class="btn">Read</a>
+            <router-link class="btn" to="/article5">Read</router-link>
           </div>
         </div>
       </div>
       <div class="col-sm-4">
         <div v-if="readingScoreExist" class="card border border-dark">
-          <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
+          <img
+            src="@/assets/Meteorite.jpeg"
+            class="card-img-top imgHeight"
+            alt=""
+          />
           <div class="card-body">
-            <h5 class="card-title">Title Three</h5>
-            <a href="#" class="btn">Read</a>
+            <h5 class="card-title">
+              Hundreds Hurt after Meteorite Falls to Earth
+            </h5>
+            <router-link class="btn" to="/article6">Read</router-link>
           </div>
         </div>
       </div>

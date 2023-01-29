@@ -1,12 +1,6 @@
 <template>
   <NavBar />
   <div class="container mt-5">
-    <div>
-      {{ studentid }} selected: {{ selected }} and current Group
-      {{ userGroup }} and current page {{ cuurentPage }} start time
-      {{ startReadingTime }} and end time
-      {{ endReadingTime }}
-    </div>
     <div class="mobileContainer">
       <div class="row">
         <h4>{{ title }}</h4>
@@ -15,7 +9,7 @@
 
       <div v-show="showQ" class="row topM">
         <p id="item">
-          Q{{ questions[cuurentPage].id }}: {{ questions[cuurentPage].q }}
+          Q{{ questions[currentQ].id }}: {{ questions[currentQ].q }}
         </p>
         <div class="col-6 offset-2">
           <div class="form-group form-check">
@@ -27,7 +21,7 @@
                 value="A"
               />
               <label class="form-check-label" for="2A">
-                {{ questions[cuurentPage].A }}
+                {{ questions[currentQ].A }}
               </label>
             </div>
             <div id="left">
@@ -38,7 +32,7 @@
                 value="B"
               />
               <label class="form-check-label" for="2B">
-                {{ questions[cuurentPage].B }}
+                {{ questions[currentQ].B }}
               </label>
             </div>
             <div id="left">
@@ -49,7 +43,7 @@
                 value="C"
               />
               <label class="form-check-label" for="2C">
-                {{ questions[cuurentPage].C }}</label
+                {{ questions[currentQ].C }}</label
               >
             </div>
             <div id="left">
@@ -60,7 +54,7 @@
                 value="D"
               />
               <label class="form-check-label" for="2D">
-                {{ questions[cuurentPage].D }}
+                {{ questions[currentQ].D }}
               </label>
             </div>
           </div>
@@ -107,7 +101,7 @@ import { db } from "../firebase";
 
 import NavBar from "@/components/Navbar";
 export default {
-  name: "ArticleThree",
+  name: "ArticleFive",
   components: {
     NavBar,
   },
@@ -117,33 +111,51 @@ export default {
       userGroup: "",
       studentid: "",
       email: "",
+      answer: [],
       cuurentPage: 0,
       currentPar: "",
       startReadingTime: 0,
       endReadingTime: 0,
-      showFinishBtn: false,
+      currentQ: 0,
+
       showNextBtn: false,
       showStartBtn: true,
+      showFinishBtn: false,
       showQ: false,
-      title: "Spain’s Robin Hood",
+      title: "",
       paragraphs: [
         {
           id: 0,
-          orginalText: "",
-          easyText: "",
+          advanced: "",
+          intimidate: "",
+          elementary: "",
         },
         {
           id: 1,
-          orginalText: "",
-          easyText: "",
+          advanced: "",
+          intimidate: "",
+          elementary: "",
         },
         {
           id: 2,
-          orginalText: "",
-          easyText: "",
+          advanced: "",
+          intimidate: "",
+          elementary: "",
+        },
+        {
+          id: 3,
+          advanced: "",
+          intimidate: "",
+          elementary: "",
+        },
+        {
+          id: 4,
+          advanced: "",
+          intimidate: "",
+          elementary: "",
         },
       ],
-      selected: "",
+      selected: null,
       questions: [
         {
           id: 1,
@@ -181,6 +193,15 @@ export default {
           D: "",
           correctAnswer: "",
         },
+        {
+          id: 5,
+          q: "",
+          A: "",
+          B: "",
+          C: "",
+          D: "",
+          correctAnswer: "",
+        },
       ],
     };
   },
@@ -192,21 +213,32 @@ export default {
   },
 
   methods: {
-    async writeUserData() {
+    async sendUserData() {
       await addDoc(collection(db, "responses"), {
         studentid: this.studentid,
         email: this.email,
         group: this.userGroup,
-        startReadingTime: this.startReadingTime,
-        endReadingTime: this.endReadingTime,
         title: this.title,
-        answer: this.selected,
-        paragraph_id: this.paragraphs[this.cuurentPage].id,
-        question_id: this.questions[this.cuurentPage].id,
-        score: false,
+        answer: this.answer,
       });
       console.log("sent");
     },
+
+    updateResponse() {
+      var today = new Date();
+      var time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      const dataObject = {
+        par: this.paragraphs[this.cuurentPage].id,
+        question_id: this.questions[this.currentQ].id,
+        startReadingTime: this.startReadingTime,
+        endReadingTime: this.endReadingTime,
+        answer: this.selected,
+        time: time,
+      };
+      this.answer.push(dataObject);
+    },
+
     start() {
       this.startReadingTime = new Date().getSeconds();
       this.showStartBtn = false;
@@ -214,55 +246,70 @@ export default {
       this.showQ = true;
       // at start all group get orignal text except group B
       if (this.userGroup === "B") {
-        const par = this.paragraphs[this.cuurentPage].easyText;
+        const par = this.paragraphs[this.cuurentPage].elementary;
         this.currentPar = par;
+        this.cuurentPage++;
       } else {
-        const par = this.paragraphs[this.cuurentPage].orginalText;
+        const par = this.paragraphs[this.cuurentPage].advanced;
         this.currentPar = par;
+        this.cuurentPage++;
       }
     },
     finishTest() {
+      this.sendUserData();
       this.$router.push("/");
     },
 
     async next() {
-      if (this.cuurentPage < this.paragraphs.length) {
-        if (this.userGroup === "A") {
-          const par = this.paragraphs[this.cuurentPage].orginalText;
-          this.currentPar = par;
-          this.endReadingTime = new Date().getSeconds() - this.startReadingTime;
-          this.startReadingTime = new Date().getSeconds();
-          this.writeUserData();
-          this.cuurentPage++;
-        } else if (this.userGroup === "B") {
-          const par = this.paragraphs[this.cuurentPage].easyText;
-          this.currentPar = par;
-          this.endReadingTime = new Date().getSeconds() - this.startReadingTime;
-          this.startReadingTime = new Date().getSeconds();
-          this.writeUserData();
-          this.cuurentPage++;
-        } else {
-          if (this.questions[this.cuurentPage].correctAnswer != this.selected) {
-            const par = this.paragraphs[this.cuurentPage].easyText;
-            this.currentPar = par;
-            this.endReadingTime =
-              new Date().getSeconds() - this.startReadingTime;
-            this.startReadingTime = new Date().getSeconds();
-            this.writeUserData();
-            this.cuurentPage++;
-          } else {
-            const par = this.paragraphs[this.cuurentPage].orginalText;
-            this.currentPar = par;
-            this.endReadingTime =
-              new Date().getSeconds() - this.startReadingTime;
-            this.startReadingTime = new Date().getSeconds();
-            this.writeUserData();
-            this.cuurentPage++;
-          }
-        }
+      if (this.selected == null) {
+        alert("You need to answer the question");
       } else {
-        this.showFinishBtn = true;
-        this.showNextBtn = false;
+        if (this.cuurentPage < this.paragraphs.length) {
+          if (this.userGroup === "A") {
+            const par = this.paragraphs[this.cuurentPage].advanced;
+            this.currentPar = par;
+            this.endReadingTime =
+              new Date().getSeconds() - this.startReadingTime;
+            this.startReadingTime = new Date().getSeconds();
+            this.updateResponse();
+            this.cuurentPage++;
+            this.currentQ++;
+          } else if (this.userGroup === "B") {
+            const par = this.paragraphs[this.cuurentPage].elementary;
+            this.currentPar = par;
+            this.endReadingTime =
+              new Date().getSeconds() - this.startReadingTime;
+            this.startReadingTime = new Date().getSeconds();
+            this.updateResponse();
+            this.cuurentPage++;
+            this.currentQ++;
+          } else {
+            if (
+              this.questions[this.cuurentPage].correctAnswer != this.selected
+            ) {
+              const par = this.paragraphs[this.cuurentPage].elementary;
+              this.currentPar = par;
+              this.endReadingTime =
+                new Date().getSeconds() - this.startReadingTime;
+              this.startReadingTime = new Date().getSeconds();
+              this.updateResponse();
+              this.cuurentPage++;
+              this.currentQ++;
+            } else {
+              const par = this.paragraphs[this.cuurentPage].advanced;
+              this.currentPar = par;
+              this.endReadingTime =
+                new Date().getSeconds() - this.startReadingTime;
+              this.startReadingTime = new Date().getSeconds();
+              this.updateResponse();
+              this.cuurentPage++;
+              this.currentQ++;
+            }
+          }
+        } else {
+          this.showNextBtn = false;
+          this.showFinishBtn = true;
+        }
       }
     },
   },

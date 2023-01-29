@@ -107,7 +107,7 @@ import { db } from "../firebase";
 
 import NavBar from "@/components/Navbar";
 export default {
-  name: "ArticleThree",
+  name: "ArticleOne",
   components: {
     NavBar,
   },
@@ -246,12 +246,16 @@ export default {
     },
 
     updateResponse() {
+      var today = new Date();
+      var time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       const dataObject = {
         par: this.paragraphs[this.cuurentPage].id,
         question_id: this.questions[this.currentQ].id,
         startReadingTime: this.startReadingTime,
         endReadingTime: this.endReadingTime,
         answer: this.selected,
+        time: time,
       };
       this.answer.push(dataObject);
     },

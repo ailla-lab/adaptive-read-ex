@@ -1,10 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
+import ReadingSpeed from "../views/ReadingSpeed.vue";
 import ArticleOne from "../views/ArticleOne.vue";
 import ArticleTwo from "../views/ArticleTwo.vue";
 import ArticleThree from "../views/ArticleThree.vue";
-import ReadingSpeed from "../views/ReadingSpeed.vue";
+import ArticleFour from "../views/ArticleFour.vue";
+import ArticleFive from "../views/ArticleFive.vue";
+import ArticleSix from "../views/ArticleSix.vue";
 import { auth } from "../firebase";
 
 const routes = [
@@ -46,6 +49,30 @@ const routes = [
     path: "/article3",
     name: "ArticleThree",
     component: ArticleThree,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/article4",
+    name: "Articlefour",
+    component: ArticleFour,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/article5",
+    name: "Articlefive",
+    component: ArticleFive,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/article6",
+    name: "Articlesix",
+    component: ArticleSix,
     meta: {
       requiresAuth: true,
     },
