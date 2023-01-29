@@ -7,9 +7,8 @@ import {
   browserSessionPersistence,
 } from "firebase/auth";
 
-const ApiKey = process.env.FIREBASE_API_KEY;
 const firebaseConfig = {
-  apiKey: ApiKey,
+  apiKey: "AIzaSyA2FsWtERmBdkkdLbez7OC3QDoNsF8a1fY",
   authDomain: "adpative-read.firebaseapp.com",
   projectId: "adpative-read",
   storageBucket: "adpative-read.appspot.com",
