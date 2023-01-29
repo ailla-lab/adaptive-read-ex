@@ -66,7 +66,9 @@
         <div v-if="readingScoreExist" class="card border border-dark">
           <img src="@/assets/logo.png" class="card-img-top imgHeight" alt="" />
           <div class="card-body">
-            <h5 class="card-title">Title Two</h5>
+            <h5 class="card-title">
+              Philip Pullman Illegal Downloading Is Moral Squalor
+            </h5>
             <router-link class="btn" to="/article5">Read</router-link>
           </div>
         </div>
