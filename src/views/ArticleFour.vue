@@ -174,48 +174,48 @@ export default {
       questions: [
         {
           id: 1,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What has happened to Nepal’s royal bengal tiger population over the past five years?",
+          A: "It has increased and has now reached 198 tigers",
+          B: "It has increased by 500 tigers in five protected areas",
+          C: "It has steadily decreased",
+          D: "It has increased by 198 tigers",
+          correctAnswer: "A",
         },
         {
           id: 2,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What do international gangs do?",
+          A: "Kill tigers",
+          B: "Use tiger skins for clothing",
+          C: "Pay others to kill tigers",
+          D: "Raise tigers for sale",
+          correctAnswer: "C",
         },
         {
           id: 3,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "According to conservation experts, what is one reason for the increase in the tiger population in Nepal?",
+          A: "Fewer attacks by villagers",
+          B: " Better management of areas where tigers live",
+          C: "Forests now cover 29% of the land in tiger habitats",
+          D: "More severe punishments for tiger hunting",
+          correctAnswer: "B",
         },
         {
           id: 4,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: " What happened in a recent tiger incident in a village?",
+          A: " A tiger killed two people",
+          B: " A tiger killed two people and pulled a third from his bed",
+          C: "A tiger protected villagers",
+          D: "Villagers saved a tiger",
+          correctAnswer: "A",
         },
         {
           id: 5,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What happened in India in 2013, according to Dhakal?",
+          A: "1,300 tigers were found outside protected areas",
+          B: "The government announced plans to double the tiger population",
+          C: "There were demonstrations against tiger-hunting",
+          D: "A tiger survey took place",
+          correctAnswer: "D",
         },
       ],
     };
@@ -350,7 +350,7 @@ p {
 }
 
 .form-check-label {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 #left {
@@ -375,7 +375,6 @@ p {
   border-radius: 50%;
   color: blue;
   border-color: blue;
-  background-color: lightcoral;
 }
 .topM {
   margin-top: 50px;

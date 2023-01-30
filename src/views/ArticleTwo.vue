@@ -201,7 +201,7 @@ export default {
         },
         {
           id: 4,
-          q: " What did participants lie about in the Never End game experiment?",
+          q: "What did participants lie about in the Never End game experiment?",
           A: "The duration of the game",
           B: "Being paid £5 to play the game",
           C: "Their position on the game’s leaderboard",
@@ -210,12 +210,12 @@ export default {
         },
         {
           id: 5,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What is one reason Anderson is looking for alternatives to body suits?",
+          A: "Body suits will become expensive in the future",
+          B: "Body suits are costly",
+          C: "The new suit is only 82.2% reliable",
+          D: "Body suits take a long time to manufacture",
+          correctAnswer: "B",
         },
       ],
     };

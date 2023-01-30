@@ -184,57 +184,58 @@ export default {
       questions: [
         {
           id: 1,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What happened in Galina's apartment because of the explosion?",
+          A: "The balcony collapsed",
+          B: "Pots were damaged",
+          C: " The apartment filled up with vapor",
+          D: "A chandelier fell off the ceiling",
+          correctAnswer: "B",
         },
         {
           id: 2,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: " Where is Chelyabinsk located?",
+          A: "In Russia",
+          B: "In Kazakhstan",
+          C: "In the Ural mountains",
+          D: "In Ukraine",
+          correctAnswer: "A",
         },
         {
           id: 3,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What was Tatyana Bets doing as she noticed the wind, light and smoke?",
+          A: "Hospitalized at a clinic",
+          B: "Visiting a lake",
+          C: " Preparing to go to bed",
+          D: "Working at the city center",
+          correctAnswer: "D",
         },
         {
           id: 4,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What is true of most of the people who came into the clinic where Bets works?",
+
+          A: "They were injured by glass",
+          B: "They were children",
+          C: "They were in shock",
+          D: "hey were brought in ambulances",
+          correctAnswer: "A",
         },
         {
           id: 5,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: " What is true of the asteroid 2012 DA14?",
+          A: "It hit earth 17,510 miles away from the landing site of the meteorite",
+          B: "It was blown apart by the Russian military",
+          C: "It passed Earth without hitting it",
+          D: "It created panic in Russia",
+          correctAnswer: "C",
         },
         {
           id: 6,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What did Vladimir Zhirinovsky say?",
+          A: "That meteorite pieces were sold online",
+          B: "That the event demonstrates how vulnerable Russia is",
+          C: " That his thoughts are with the Russian people",
+          D: "That an arms trial was conducted by another country",
+          correctAnswer: "D",
         },
       ],
     };
@@ -369,7 +370,7 @@ p {
 }
 
 .form-check-label {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 #left {
@@ -394,7 +395,6 @@ p {
   border-radius: 50%;
   color: blue;
   border-color: blue;
-  background-color: lightcoral;
 }
 .topM {
   margin-top: 50px;

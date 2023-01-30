@@ -165,39 +165,39 @@ export default {
       questions: [
         {
           id: 1,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What changed between 2011 and 2012?",
+          A: "Crime rates in Sweden have dropped",
+          B: "There are fewer people in Sweden’s prisons",
+          C: "Swedish prisons became more liberal and progressive",
+          D: " The Swedish government started publishing crime statistics",
+          correctAnswer: "B",
         },
         {
           id: 2,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What changed in Swedish prisons after 2004?",
+          A: "Prisons have become more secur",
+          B: "There have been more high profile escapes",
+          C: "Prison sentences have become shorter",
+          D: "Prisoners were allowed to receive visitors more frequently",
+          correctAnswer: "A",
         },
         {
           id: 3,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What does “below 70 per 100,000” refer to?",
+          A: "The reoffending rate for people under 15 in Sweden",
+          B: "The success rate of prison escape attempts in Sweden",
+          C: "The number of people who sit in Swedish prisons",
+          D: "The number of people under 21 sentenced to life in Sweden",
+          correctAnswer: "C",
         },
         {
           id: 4,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "Who helps the treatment programs for prisoners?",
+          A: "Former offenders",
+          B: "Gustafsson",
+          C: "eligious organizations",
+          D: "4,500 volunteers",
+          correctAnswer: "D",
         },
       ],
     };
@@ -332,7 +332,7 @@ p {
 }
 
 .form-check-label {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 #left {
@@ -357,7 +357,6 @@ p {
   border-radius: 50%;
   color: blue;
   border-color: blue;
-  background-color: lightcoral;
 }
 .topM {
   margin-top: 50px;
