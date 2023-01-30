@@ -8,7 +8,7 @@
       </div>
 
       <div v-show="showQ" class="row topM">
-        <p id="item">
+        <p id="item" class="text-center">
           Q{{ questions[currentQ].id }}: {{ questions[currentQ].q }}
         </p>
         <div class="col-6 offset-2">
@@ -350,7 +350,7 @@ p {
 }
 
 .form-check-label {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 #left {
@@ -375,7 +375,6 @@ p {
   border-radius: 50%;
   color: blue;
   border-color: blue;
-  background-color: lightcoral;
 }
 .topM {
   margin-top: 50px;

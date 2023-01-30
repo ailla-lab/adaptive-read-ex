@@ -1,23 +1,18 @@
 <template>
   <NavBar />
   <div class="container mt-5">
-    <div>
-      {{ studentid }} selected: {{ selected }} and current Group
-      {{ userGroup }} and current page {{ cuurentPage }} and current q
-      {{ currentQ }} start time {{ startReadingTime }} and end time
-      {{ endReadingTime }}
-    </div>
-    <div class="mobileContainer">
+    <div class="">
       <div class="row">
         <h4>{{ title }}</h4>
         <p>{{ currentPar }}</p>
       </div>
 
       <div v-show="showQ" class="row topM">
-        <p id="item">
-          Q{{ questions[currentQ].id }}: {{ questions[currentQ].q }}
-        </p>
-        <div class="col-6 offset-2">
+        <div class="col-12">
+          <p id="item" class="text-center">
+            Q{{ questions[currentQ].id }}: {{ questions[currentQ].q }}
+          </p>
+
           <div class="form-group form-check">
             <div id="left">
               <input
@@ -180,48 +175,48 @@ export default {
       questions: [
         {
           id: 1,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What did Enric Duran do with the money he took from the banks?",
+          A: "He gave the money to projects that were anti-capitalist",
+          B: "He gave the money to projects that supported alternatives to socialism",
+          C: "He hid the money for 14 months",
+          D: "He gave the money to charities and humanitarian projects",
+          correctAnswer: "A",
         },
         {
           id: 2,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "What was the money Duran took from the banks used for?",
+          A: "Helping social activists have enough money for their basic needs",
+          B: "Aid for unemployed and homeless people",
+          C: "Speeches and equipment for campaigns against capitalism",
+          D: "Funding for pro-capitalism activists and media networks",
+          correctAnswer: "C",
         },
         {
           id: 3,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "Why did the banks reject Duran’s loan applications at first?",
+          A: "The banks thought that he was cheating",
+          B: "The banks suspected he was trying to learn how the banking system operates",
+          C: "A few important details were missing from his applications",
+          D: "He provided his real information, based on which he wasn’t eligible for loans",
+          correctAnswer: "D",
         },
         {
           id: 4,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: "Why did Duran leave Spain?",
+          A: "He was sentenced to eight years in prison",
+          B: "He could be sentenced to substantial prison time ",
+          C: "He wanted to draw international attention to his anti-capitalist movement",
+          D: "He was ordered by the authorities to leave the country",
+          correctAnswer: "B",
         },
         {
           id: 5,
-          q: "",
-          A: "",
-          B: "",
-          C: "",
-          D: "",
-          correctAnswer: "",
+          q: " How much money is Duran willing to return to the banks?",
+          A: "He is not willing to give any money back",
+          B: "Nothing; in fact, he thinks that the banks are the ones that owe him money",
+          C: "He is willing to return money to banks that give loans to social movements such as the Indignados",
+          D: "He hasn’t decided yet",
+          correctAnswer: "A",
         },
       ],
     };
@@ -356,7 +351,7 @@ p {
 }
 
 .form-check-label {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 #left {
@@ -381,7 +376,6 @@ p {
   border-radius: 50%;
   color: blue;
   border-color: blue;
-  background-color: lightcoral;
 }
 .topM {
   margin-top: 50px;
