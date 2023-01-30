@@ -350,7 +350,7 @@ p {
 }
 
 .form-check-label {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 #left {
@@ -375,7 +375,6 @@ p {
   border-radius: 50%;
   color: blue;
   border-color: blue;
-  background-color: lightcoral;
 }
 .topM {
   margin-top: 50px;
