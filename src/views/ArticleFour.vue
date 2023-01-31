@@ -111,6 +111,7 @@ export default {
       userGroup: "",
       studentid: "",
       email: "",
+      level: "",
       answer: [],
       cuurentPage: 0,
       currentPar: "",
@@ -250,6 +251,7 @@ export default {
         endReadingTime: this.endReadingTime,
         answer: this.selected,
         time: time,
+        level: this.level,
       };
       this.answer.push(dataObject);
     },
@@ -263,10 +265,12 @@ export default {
       if (this.userGroup === "B") {
         const par = this.paragraphs[this.cuurentPage].elementary;
         this.currentPar = par;
+        this.level = "elementary";
         this.cuurentPage++;
       } else {
         const par = this.paragraphs[this.cuurentPage].advanced;
         this.currentPar = par;
+        this.level = "advanced";
         this.cuurentPage++;
       }
     },
@@ -282,6 +286,7 @@ export default {
         if (this.cuurentPage < this.paragraphs.length) {
           if (this.userGroup === "A") {
             const par = this.paragraphs[this.cuurentPage].advanced;
+            this.level = "advanced";
             this.currentPar = par;
             this.endReadingTime =
               new Date().getSeconds() - this.startReadingTime;
@@ -291,6 +296,7 @@ export default {
             this.currentQ++;
           } else if (this.userGroup === "B") {
             const par = this.paragraphs[this.cuurentPage].elementary;
+            this.level = "elementary";
             this.currentPar = par;
             this.endReadingTime =
               new Date().getSeconds() - this.startReadingTime;
@@ -304,6 +310,7 @@ export default {
             ) {
               const par = this.paragraphs[this.cuurentPage].elementary;
               this.currentPar = par;
+              this.level = "elementary";
               this.endReadingTime =
                 new Date().getSeconds() - this.startReadingTime;
               this.startReadingTime = new Date().getSeconds();
@@ -313,6 +320,7 @@ export default {
             } else {
               const par = this.paragraphs[this.cuurentPage].advanced;
               this.currentPar = par;
+              this.level = "advanced";
               this.endReadingTime =
                 new Date().getSeconds() - this.startReadingTime;
               this.startReadingTime = new Date().getSeconds();

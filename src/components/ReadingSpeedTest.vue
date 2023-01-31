@@ -100,7 +100,6 @@ export default {
     finishTest() {
       this.readingDuration = Date.now() - this.readingTimeStart;
       this.$store.state.readingSpeed = this.readingDuration;
-      this.addReadingSpeedResult();
       this.readingTimeStart = 0;
       this.$router.push("/");
     },
