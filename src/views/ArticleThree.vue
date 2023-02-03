@@ -225,7 +225,17 @@ export default {
     updateResponse() {
       var today = new Date();
       var time =
-        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        today.getDay() +
+        "-" +
+        today.getMonth() +
+        "-" +
+        today.getFullYear() +
+        "  " +
+        today.getHours() +
+        ":" +
+        today.getMinutes() +
+        ":" +
+        today.getSeconds();
       const dataObject = {
         par: this.paragraphs[this.cuurentPage].id,
         question_id: this.questions[this.currentQ].id,
